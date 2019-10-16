@@ -1,2 +1,2 @@
 # DOG104_lib
-Library to DOG104 LCD simple display, include all display funcctions working verry well
+Library to DOG104 LCD simple display, include all display funcctions working very well
