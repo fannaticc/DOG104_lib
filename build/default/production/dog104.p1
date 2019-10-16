@@ -1,0 +1,589 @@
+Version 4.0 HI-TECH Software Intermediate Code
+"81 ./dog104.h
+[; ;./dog104.h: 81: void WriteIns(int8_t ins);
+[v _WriteIns `(v ~T0 @X0 0 ef1`c ]
+"72
+[; ;./dog104.h: 72: void ClrDisplay(void);
+[v _ClrDisplay `(v ~T0 @X0 0 ef ]
+"70
+[; ;./dog104.h: 70: void DisplayOnOff(int8_t data);
+[v _DisplayOnOff `(v ~T0 @X0 0 ef1`c ]
+"82
+[; ;./dog104.h: 82: void WriteData(int8_t data);
+[v _WriteData `(v ~T0 @X0 0 ef1`c ]
+"84
+[; ;./dog104.h: 84: uint8_t CheckBusy(void);
+[v _CheckBusy `(uc ~T0 @X0 0 ef ]
+"85
+[; ;./dog104.h: 85: void IIC_put(uint8_t cb, uint8_t db);
+[v _IIC_put `(v ~T0 @X0 0 ef2`uc`uc ]
+"86
+[; ;./dog104.h: 86: static uint8_t IIC_get(void);
+[v _IIC_get `(uc ~T0 @X0 0 sf ]
+"26 ./my_i2c.h
+[; ;./my_i2c.h: 26: void I2C_Start(void);
+[v _I2C_Start `(v ~T0 @X0 0 ef ]
+"23
+[; ;./my_i2c.h: 23: unsigned char I2C_WriteByte(unsigned char data_out);
+[v _I2C_WriteByte `(uc ~T0 @X0 0 ef1`uc ]
+"28
+[; ;./my_i2c.h: 28: void I2C_Stop(void);
+[v _I2C_Stop `(v ~T0 @X0 0 ef ]
+"27
+[; ;./my_i2c.h: 27: void I2C_RepeatedStart(void);
+[v _I2C_RepeatedStart `(v ~T0 @X0 0 ef ]
+"22
+[; ;./my_i2c.h: 22: unsigned char I2C_ReadByte(unsigned char acknowledge);
+[v _I2C_ReadByte `(uc ~T0 @X0 0 ef1`uc ]
+"19 ./my_i2c.h
+[; ;./my_i2c.h: 19: uint16_t i2ctimeout = 0;
+[v _i2ctimeout `us ~T0 @X0 1 e ]
+[i _i2ctimeout
+-> -> 0 `i `us
+]
+"20
+[; ;./my_i2c.h: 20: uint8_t i2c_error = 0;
+[v _i2c_error `uc ~T0 @X0 1 e ]
+[i _i2c_error
+-> -> 0 `i `uc
+]
+"16 dog104.c
+[; ;dog104.c: 16: unsigned char dh_function_set = 0x38;
+[v _dh_function_set `uc ~T0 @X0 1 e ]
+[i _dh_function_set
+-> -> 56 `i `uc
+]
+"21
+[; ;dog104.c: 21: void Wait (uint8_t waitstates)
+[v _Wait `(v ~T0 @X0 1 ef1`uc ]
+"22
+[; ;dog104.c: 22: {
+{
+[e :U _Wait ]
+"21
+[; ;dog104.c: 21: void Wait (uint8_t waitstates)
+[v _waitstates `uc ~T0 @X0 1 r1 ]
+"22
+[; ;dog104.c: 22: {
+[f ]
+"23
+[; ;dog104.c: 23:  uint8_t i = 0;
+[v _i `uc ~T0 @X0 1 a ]
+[e = _i -> -> 0 `i `uc ]
+"24
+[; ;dog104.c: 24:  for (i = 0; i < waitstates; i++)
+{
+[e = _i -> -> 0 `i `uc ]
+[e $U 5  ]
+[e :U 2 ]
+"25
+[; ;dog104.c: 25:  {
+{
+"26
+[; ;dog104.c: 26:   __asm("NOP");
+[; <" NOP ;# ">
+"27
+[; ;dog104.c: 27:  }
+}
+[e ++ _i -> -> 1 `i `uc ]
+[e :U 5 ]
+[e $ < -> _i `i -> _waitstates `i 2  ]
+[e :U 3 ]
+}
+"28
+[; ;dog104.c: 28: }
+[e :UE 1 ]
+}
+"34
+[; ;dog104.c: 34: void initDispl(void)
+[v _initDispl `(v ~T0 @X0 1 ef ]
+"35
+[; ;dog104.c: 35: {
+{
+[e :U _initDispl ]
+[f ]
+"36
+[; ;dog104.c: 36:  uint8_t i;
+[v _i `uc ~T0 @X0 1 a ]
+"45
+[; ;dog104.c: 45:  WriteIns(0x3A);
+[e ( _WriteIns (1 -> -> 58 `i `c ]
+"46
+[; ;dog104.c: 46:  WriteIns(0x09);
+[e ( _WriteIns (1 -> -> 9 `i `c ]
+"48
+[; ;dog104.c: 48:  WriteIns(0x06);
+[e ( _WriteIns (1 -> -> 6 `i `c ]
+"53
+[; ;dog104.c: 53:  WriteIns(0x1E);
+[e ( _WriteIns (1 -> -> 30 `i `c ]
+"54
+[; ;dog104.c: 54:  WriteIns(0x39);
+[e ( _WriteIns (1 -> -> 57 `i `c ]
+"55
+[; ;dog104.c: 55:  WriteIns(0x1B);
+[e ( _WriteIns (1 -> -> 27 `i `c ]
+"56
+[; ;dog104.c: 56:  WriteIns(0x6E);
+[e ( _WriteIns (1 -> -> 110 `i `c ]
+"57
+[; ;dog104.c: 57:  WriteIns(0x56);
+[e ( _WriteIns (1 -> -> 86 `i `c ]
+"58
+[; ;dog104.c: 58:  WriteIns(0x7A);
+[e ( _WriteIns (1 -> -> 122 `i `c ]
+"59
+[; ;dog104.c: 59:  WriteIns(dh_function_set);
+[e ( _WriteIns (1 -> _dh_function_set `c ]
+"61
+[; ;dog104.c: 61:  ClrDisplay();
+[e ( _ClrDisplay ..  ]
+"62
+[; ;dog104.c: 62:  DisplayOnOff(0x04 | 0x02 | 0x01);
+[e ( _DisplayOnOff (1 -> | | -> 4 `i -> 2 `i -> 1 `i `c ]
+"63
+[; ;dog104.c: 63: }
+[e :UE 6 ]
+}
+"69
+[; ;dog104.c: 69: void WriteChar(int8_t character)
+[v _WriteChar `(v ~T0 @X0 1 ef1`c ]
+"70
+[; ;dog104.c: 70: {
+{
+[e :U _WriteChar ]
+"69
+[; ;dog104.c: 69: void WriteChar(int8_t character)
+[v _character `c ~T0 @X0 1 r1 ]
+"70
+[; ;dog104.c: 70: {
+[f ]
+"71
+[; ;dog104.c: 71:  WriteData(character);
+[e ( _WriteData (1 _character ]
+"72
+[; ;dog104.c: 72: }
+[e :UE 7 ]
+}
+"78
+[; ;dog104.c: 78: void WriteString(int8_t *stringi)
+[v _WriteString `(v ~T0 @X0 1 ef1`*c ]
+"79
+[; ;dog104.c: 79: {
+{
+[e :U _WriteString ]
+"78
+[; ;dog104.c: 78: void WriteString(int8_t *stringi)
+[v _stringi `*c ~T0 @X0 1 r1 ]
+"79
+[; ;dog104.c: 79: {
+[f ]
+"80
+[; ;dog104.c: 80:  do
+[e :U 11 ]
+"81
+[; ;dog104.c: 81:  {
+{
+"82
+[; ;dog104.c: 82:   WriteData(*stringi++);
+[e ( _WriteData (1 *U ++ _stringi * -> -> 1 `i `x -> -> # *U _stringi `i `x ]
+"83
+[; ;dog104.c: 83:  }
+}
+[e $ != -> *U _stringi `i -> 0 `i 11  ]
+[e :U 10 ]
+"85
+[; ;dog104.c: 85: }
+[e :UE 8 ]
+}
+"91
+[; ;dog104.c: 91: void DisplLines(uint8_t lines)
+[v _DisplLines `(v ~T0 @X0 1 ef1`uc ]
+"92
+[; ;dog104.c: 92: {
+{
+[e :U _DisplLines ]
+"91
+[; ;dog104.c: 91: void DisplLines(uint8_t lines)
+[v _lines `uc ~T0 @X0 1 r1 ]
+"92
+[; ;dog104.c: 92: {
+[f ]
+"93
+[; ;dog104.c: 93:  if(lines == 0x38)
+[e $ ! == -> _lines `i -> 56 `i 13  ]
+"94
+[; ;dog104.c: 94:  {
+{
+"95
+[; ;dog104.c: 95:   WriteIns(lines);
+[e ( _WriteIns (1 -> _lines `c ]
+"96
+[; ;dog104.c: 96:   dh_function_set = 0x38;
+[e = _dh_function_set -> -> 56 `i `uc ]
+"97
+[; ;dog104.c: 97:  }
+}
+[e $U 14  ]
+"98
+[; ;dog104.c: 98:  else
+[e :U 13 ]
+"99
+[; ;dog104.c: 99:  {
+{
+"100
+[; ;dog104.c: 100:   WriteIns(0x3C);
+[e ( _WriteIns (1 -> -> 60 `i `c ]
+"101
+[; ;dog104.c: 101:   WriteIns(0x3A);
+[e ( _WriteIns (1 -> -> 58 `i `c ]
+"102
+[; ;dog104.c: 102:   WriteIns(lines);
+[e ( _WriteIns (1 -> _lines `c ]
+"103
+[; ;dog104.c: 103:   WriteIns(0x3C);
+[e ( _WriteIns (1 -> -> 60 `i `c ]
+"104
+[; ;dog104.c: 104:   dh_function_set = 0x3C;
+[e = _dh_function_set -> -> 60 `i `uc ]
+"105
+[; ;dog104.c: 105:  }
+}
+[e :U 14 ]
+"106
+[; ;dog104.c: 106: }
+[e :UE 12 ]
+}
+"112
+[; ;dog104.c: 112: void SetPostion(int8_t pos)
+[v _SetPostion `(v ~T0 @X0 1 ef1`c ]
+"113
+[; ;dog104.c: 113: {
+{
+[e :U _SetPostion ]
+"112
+[; ;dog104.c: 112: void SetPostion(int8_t pos)
+[v _pos `c ~T0 @X0 1 r1 ]
+"113
+[; ;dog104.c: 113: {
+[f ]
+"114
+[; ;dog104.c: 114:  WriteIns(0x80 + pos);
+[e ( _WriteIns (1 -> + -> 128 `i -> _pos `i `c ]
+"115
+[; ;dog104.c: 115: }
+[e :UE 15 ]
+}
+"121
+[; ;dog104.c: 121: void DisplayOnOff(int8_t data)
+[v _DisplayOnOff `(v ~T0 @X0 1 ef1`c ]
+"122
+[; ;dog104.c: 122: {
+{
+[e :U _DisplayOnOff ]
+"121
+[; ;dog104.c: 121: void DisplayOnOff(int8_t data)
+[v _data `c ~T0 @X0 1 r1 ]
+"122
+[; ;dog104.c: 122: {
+[f ]
+"123
+[; ;dog104.c: 123:  WriteIns(0x08 + data);
+[e ( _WriteIns (1 -> + -> 8 `i -> _data `i `c ]
+"124
+[; ;dog104.c: 124: }
+[e :UE 16 ]
+}
+"130
+[; ;dog104.c: 130: void DefineCharacter(uint8_t postion, uint8_t *data)
+[v _DefineCharacter `(v ~T0 @X0 1 ef2`uc`*uc ]
+"131
+[; ;dog104.c: 131: {
+{
+[e :U _DefineCharacter ]
+"130
+[; ;dog104.c: 130: void DefineCharacter(uint8_t postion, uint8_t *data)
+[v _postion `uc ~T0 @X0 1 r1 ]
+[v _data `*uc ~T0 @X0 1 r2 ]
+"131
+[; ;dog104.c: 131: {
+[f ]
+"132
+[; ;dog104.c: 132:  uint8_t i = 0;
+[v _i `uc ~T0 @X0 1 a ]
+[e = _i -> -> 0 `i `uc ]
+"133
+[; ;dog104.c: 133:  WriteIns(0x40 + 8 * postion);
+[e ( _WriteIns (1 -> + -> 64 `i * -> 8 `i -> _postion `i `c ]
+"135
+[; ;dog104.c: 135:  for (i = 0; i < 8; i++)
+{
+[e = _i -> -> 0 `i `uc ]
+[e $ < -> _i `i -> 8 `i 18  ]
+[e $U 19  ]
+[e :U 18 ]
+"136
+[; ;dog104.c: 136:  {
+{
+"137
+[; ;dog104.c: 137:   WriteData(data[i]);
+[e ( _WriteData (1 -> *U + _data * -> _i `ux -> -> # *U _data `ui `ux `c ]
+"138
+[; ;dog104.c: 138:  }
+}
+[e ++ _i -> -> 1 `i `uc ]
+[e $ < -> _i `i -> 8 `i 18  ]
+[e :U 19 ]
+}
+"139
+[; ;dog104.c: 139:  SetPostion(0);
+[e ( _SetPostion (1 -> -> 0 `i `c ]
+"140
+[; ;dog104.c: 140: }
+[e :UE 17 ]
+}
+"146
+[; ;dog104.c: 146: void ClrDisplay(void)
+[v _ClrDisplay `(v ~T0 @X0 1 ef ]
+"147
+[; ;dog104.c: 147: {
+{
+[e :U _ClrDisplay ]
+[f ]
+"148
+[; ;dog104.c: 148:  WriteIns(0x01);
+[e ( _WriteIns (1 -> -> 1 `i `c ]
+"149
+[; ;dog104.c: 149:  SetPostion(0);
+[e ( _SetPostion (1 -> -> 0 `i `c ]
+"150
+[; ;dog104.c: 150: }
+[e :UE 21 ]
+}
+"156
+[; ;dog104.c: 156: void SetContrast(uint8_t contr)
+[v _SetContrast `(v ~T0 @X0 1 ef1`uc ]
+"157
+[; ;dog104.c: 157: {
+{
+[e :U _SetContrast ]
+"156
+[; ;dog104.c: 156: void SetContrast(uint8_t contr)
+[v _contr `uc ~T0 @X0 1 r1 ]
+"157
+[; ;dog104.c: 157: {
+[f ]
+"158
+[; ;dog104.c: 158:  WriteIns(0x39);
+[e ( _WriteIns (1 -> -> 57 `i `c ]
+"159
+[; ;dog104.c: 159:  WriteIns(0x54 | (contr >> 4));
+[e ( _WriteIns (1 -> | -> 84 `i >> -> _contr `i -> 4 `i `c ]
+"160
+[; ;dog104.c: 160:  WriteIns(0x70 | (contr & 0x0F));
+[e ( _WriteIns (1 -> | -> 112 `i & -> _contr `i -> 15 `i `c ]
+"161
+[; ;dog104.c: 161:  WriteIns(dh_function_set);
+[e ( _WriteIns (1 -> _dh_function_set `c ]
+"162
+[; ;dog104.c: 162: }
+[e :UE 22 ]
+}
+"168
+[; ;dog104.c: 168: void SetView(uint8_t view)
+[v _SetView `(v ~T0 @X0 1 ef1`uc ]
+"169
+[; ;dog104.c: 169: {
+{
+[e :U _SetView ]
+"168
+[; ;dog104.c: 168: void SetView(uint8_t view)
+[v _view `uc ~T0 @X0 1 r1 ]
+"169
+[; ;dog104.c: 169: {
+[f ]
+"170
+[; ;dog104.c: 170:  WriteIns(0x3A);
+[e ( _WriteIns (1 -> -> 58 `i `c ]
+"171
+[; ;dog104.c: 171:  WriteIns(view);
+[e ( _WriteIns (1 -> _view `c ]
+"172
+[; ;dog104.c: 172:  WriteIns(dh_function_set);
+[e ( _WriteIns (1 -> _dh_function_set `c ]
+"173
+[; ;dog104.c: 173: }
+[e :UE 23 ]
+}
+"179
+[; ;dog104.c: 179: void SetROM(uint8_t value)
+[v _SetROM `(v ~T0 @X0 1 ef1`uc ]
+"180
+[; ;dog104.c: 180: {
+{
+[e :U _SetROM ]
+"179
+[; ;dog104.c: 179: void SetROM(uint8_t value)
+[v _value `uc ~T0 @X0 1 r1 ]
+"180
+[; ;dog104.c: 180: {
+[f ]
+"181
+[; ;dog104.c: 181:  WriteIns(0x2A);
+[e ( _WriteIns (1 -> -> 42 `i `c ]
+"182
+[; ;dog104.c: 182:  WriteIns(0x72);
+[e ( _WriteIns (1 -> -> 114 `i `c ]
+"183
+[; ;dog104.c: 183:  WriteData(value);
+[e ( _WriteData (1 -> _value `c ]
+"184
+[; ;dog104.c: 184:  WriteIns(0x28);
+[e ( _WriteIns (1 -> -> 40 `i `c ]
+"185
+[; ;dog104.c: 185: }
+[e :UE 24 ]
+}
+"191
+[; ;dog104.c: 191: void WriteIns(int8_t ins)
+[v _WriteIns `(v ~T0 @X0 1 ef1`c ]
+"192
+[; ;dog104.c: 192: {
+{
+[e :U _WriteIns ]
+"191
+[; ;dog104.c: 191: void WriteIns(int8_t ins)
+[v _ins `c ~T0 @X0 1 r1 ]
+"192
+[; ;dog104.c: 192: {
+[f ]
+"193
+[; ;dog104.c: 193:  while(CheckBusy() == 1);
+[e $U 26  ]
+[e :U 27 ]
+[e :U 26 ]
+[e $ == -> ( _CheckBusy ..  `i -> 1 `i 27  ]
+[e :U 28 ]
+"194
+[; ;dog104.c: 194:  IIC_put(0x80, ins);
+[e ( _IIC_put (2 , -> -> 128 `i `uc -> _ins `uc ]
+"195
+[; ;dog104.c: 195: }
+[e :UE 25 ]
+}
+"201
+[; ;dog104.c: 201: void WriteData(int8_t data)
+[v _WriteData `(v ~T0 @X0 1 ef1`c ]
+"202
+[; ;dog104.c: 202: {
+{
+[e :U _WriteData ]
+"201
+[; ;dog104.c: 201: void WriteData(int8_t data)
+[v _data `c ~T0 @X0 1 r1 ]
+"202
+[; ;dog104.c: 202: {
+[f ]
+"203
+[; ;dog104.c: 203:  while(CheckBusy() == 1);
+[e $U 30  ]
+[e :U 31 ]
+[e :U 30 ]
+[e $ == -> ( _CheckBusy ..  `i -> 1 `i 31  ]
+[e :U 32 ]
+"204
+[; ;dog104.c: 204:  IIC_put(0x40, data);
+[e ( _IIC_put (2 , -> -> 64 `i `uc -> _data `uc ]
+"205
+[; ;dog104.c: 205: }
+[e :UE 29 ]
+}
+"211
+[; ;dog104.c: 211: uint8_t CheckBusy(void)
+[v _CheckBusy `(uc ~T0 @X0 1 ef ]
+"212
+[; ;dog104.c: 212: {
+{
+[e :U _CheckBusy ]
+[f ]
+"213
+[; ;dog104.c: 213:     return (IIC_get() & 0x80);
+[e ) -> & -> ( _IIC_get ..  `i -> 128 `i `uc ]
+[e $UE 33  ]
+"214
+[; ;dog104.c: 214: }
+[e :UE 33 ]
+}
+"221
+[; ;dog104.c: 221: void IIC_put(uint8_t cb, uint8_t db)
+[v _IIC_put `(v ~T0 @X0 1 ef2`uc`uc ]
+"222
+[; ;dog104.c: 222: {
+{
+[e :U _IIC_put ]
+"221
+[; ;dog104.c: 221: void IIC_put(uint8_t cb, uint8_t db)
+[v _cb `uc ~T0 @X0 1 r1 ]
+[v _db `uc ~T0 @X0 1 r2 ]
+"222
+[; ;dog104.c: 222: {
+[f ]
+"223
+[; ;dog104.c: 223:     I2C_Start();
+[e ( _I2C_Start ..  ]
+"224
+[; ;dog104.c: 224:  I2C_WriteByte(0x78);
+[e ( _I2C_WriteByte (1 -> -> 120 `i `uc ]
+"225
+[; ;dog104.c: 225:  I2C_WriteByte(cb);
+[e ( _I2C_WriteByte (1 _cb ]
+"226
+[; ;dog104.c: 226:  I2C_WriteByte(db);
+[e ( _I2C_WriteByte (1 _db ]
+"227
+[; ;dog104.c: 227:  I2C_Stop();
+[e ( _I2C_Stop ..  ]
+"228
+[; ;dog104.c: 228: }
+[e :UE 34 ]
+}
+"234
+[; ;dog104.c: 234: static uint8_t IIC_get(void)
+[v _IIC_get `(uc ~T0 @X0 1 sf ]
+"235
+[; ;dog104.c: 235: {
+{
+[e :U _IIC_get ]
+[f ]
+"236
+[; ;dog104.c: 236:  uint8_t ret;
+[v _ret `uc ~T0 @X0 1 a ]
+"238
+[; ;dog104.c: 238:     I2C_Start();
+[e ( _I2C_Start ..  ]
+"239
+[; ;dog104.c: 239:     I2C_WriteByte(0x78);
+[e ( _I2C_WriteByte (1 -> -> 120 `i `uc ]
+"240
+[; ;dog104.c: 240:     I2C_WriteByte(0x80);
+[e ( _I2C_WriteByte (1 -> -> 128 `i `uc ]
+"241
+[; ;dog104.c: 241:     I2C_RepeatedStart();
+[e ( _I2C_RepeatedStart ..  ]
+"242
+[; ;dog104.c: 242:     I2C_WriteByte(0x78 + 1);
+[e ( _I2C_WriteByte (1 -> + -> 120 `i -> 1 `i `uc ]
+"243
+[; ;dog104.c: 243:     ret = I2C_ReadByte(0);
+[e = _ret ( _I2C_ReadByte (1 -> -> 0 `i `uc ]
+"244
+[; ;dog104.c: 244:     I2C_Stop();
+[e ( _I2C_Stop ..  ]
+"246
+[; ;dog104.c: 246:  return ret;
+[e ) _ret ]
+[e $UE 35  ]
+"247
+[; ;dog104.c: 247: }
+[e :UE 35 ]
+}
